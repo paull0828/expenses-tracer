@@ -1,5 +1,3 @@
-"use client";
-
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -100,14 +98,6 @@ export default function Navbar() {
                     <span className="text-lg font-medium text-secondary-300 text-center">
                       Welcome, {user.name || user.username || "User"}
                     </span>
-                    <Link
-                      to="/dashboard"
-                      onClick={() => setMenuOpen(false)}
-                      className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-md flex items-center justify-center gap-2 text-lg transition-colors duration-200"
-                    >
-                      <LayoutDashboard className="w-5 h-5" />
-                      hboard
-                    </Link>
                     <button
                       onClick={handleLogout}
                       className="w-full bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-md flex items-center justify-center gap-2 text-lg transition-colors duration-200"
