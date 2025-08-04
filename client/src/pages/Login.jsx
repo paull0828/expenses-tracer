@@ -1,8 +1,7 @@
-"use client";
-
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import API from "../services/api";
 
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
@@ -31,11 +30,14 @@ export default function Login() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ identifier, password }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ identifier, password }),
+        }
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
       login?.({ user: data.user, token: data.token });

@@ -22,7 +22,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout?.();
-    navigate("/login");
+    navigate("/");
     setMenuOpen(false);
   };
 
