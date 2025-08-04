@@ -3,6 +3,13 @@ const Entry = require("../models/Entry");
 // GET /api/entries/history?page=&limit=
 const getEntries = async (req, res) => {
   try {
+    // 🔒 Check if user is authenticated
+    if (!req.user || !req.user.id) {
+      return res
+        .status(401)
+        .json({ message: "Please log in to view your history." });
+    }
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
     const skip = (page - 1) * limit;
